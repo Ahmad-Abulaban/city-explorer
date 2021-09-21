@@ -23,11 +23,11 @@ class App extends React.Component {
       searchQuery: e.target.city.value,
     });
 
-    let reqUrl = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_SERVER_LINK}&q=${this.state.searchQuery}&format=json`;
+    let reqUrl = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.searchQuery}&format=json`;
 
     let locResult = await axios.get(reqUrl);
 
-    let weatherUrl = `http://localhost:3005/weather?SearchQuery=${this.state.searchQuery}`;
+    let weatherUrl = `${process.env.REACT_APP_SERVER_LINK}/weather?SearchQuery=${this.state.searchQuery}`;
 
     let weatherResult = await axios.get(weatherUrl);
 
@@ -106,7 +106,7 @@ class App extends React.Component {
                   </Card.Text>
                   <Card.Img
                     variant="top"
-                    src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_SERVER_LINK}&center=${this.state.locationResult.lat},${this.state.locationResult.lon}&zoom=10`}
+                    src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.locationResult.lat},${this.state.locationResult.lon}&zoom=10`}
                   />
                 </Card.Body>
               </Card>
