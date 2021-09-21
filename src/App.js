@@ -12,7 +12,17 @@ class App extends React.Component {
       locationResult: {},
       searchQuery: '',
       showLocInfo: false,
+      cityInfo: {}
     };
+  }
+
+
+  getInfo = async ()=> {
+    let location = `${process.env.REACT_APP_SERVER_LINK}/data/weather.json/timezone`
+    let AllData = await axios.get(location)
+    this.setState({
+      cityInfo: AllData.data
+    })
   }
 
   getLocFun = async (e) => {
@@ -22,7 +32,7 @@ class App extends React.Component {
       searchQuery: e.target.city.value,
     });
 
-    let reqUrl = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.searchQuery}&format=json`;
+    let reqUrl = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_SERVER_LINK}&q=${this.state.searchQuery}&format=json`;
 
     let locResult = await axios.get(reqUrl);
 
@@ -66,6 +76,8 @@ class App extends React.Component {
             </Card>
           </>
         }
+
+        <p>{this.state.cityInfo.name}</p>
         </main>
         <footer style={{backgroundColor: "gray" , padding:'15px'}}>
           <h3>Create by Ahmad Abulaban</h3>
