@@ -4,6 +4,8 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
+import Weather from "./Module/Weather";
+import Movie from "./Module/Movie";
 
 class App extends React.Component {
   constructor(props) {
@@ -11,6 +13,7 @@ class App extends React.Component {
     this.state = {
       locationResult: {},
       WeatherResult: [],
+      MovieResult: [],
       searchQuery: "",
       showLocInfo: false,
     };
@@ -22,18 +25,23 @@ class App extends React.Component {
     await this.setState({
       searchQuery: e.target.city.value,
     });
-
+console.log('1');
     let reqUrl = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.searchQuery}&format=json`;
 
     let locResult = await axios.get(reqUrl);
 
-    let weatherUrl = `${process.env.REACT_APP_SERVER_LINK}/weather?SearchQuery=${this.state.searchQuery}`;
-
+    let weatherUrl = `${process.env.REACT_APP_SERVER_LINK}/weather?city=${this.state.searchQuery}`;
+    console.log(weatherUrl);
     let weatherResult = await axios.get(weatherUrl);
+    console.log(weatherResult.data);
+    let MovieUrl = `${process.env.REACT_APP_MOVIES_LINK}/movie?searchQuery=${e.target.city.value}`;
+
+    let MovieResult = await axios.get(MovieUrl);
 
     this.setState({
       locationResult: locResult.data[0],
       WeatherResult: weatherResult.data,
+      MovieResult: MovieResult.data,
       showLocInfo: true,
     });
     console.log(this.state.WeatherResult);
@@ -81,7 +89,7 @@ class App extends React.Component {
             <>
               <Card
                 style={{
-                  width: "25rem",
+                  width: "50rem",
                   border: "2px solid red",
                   marginLeft: "25px",
                   marginTop: "25px",
@@ -94,15 +102,13 @@ class App extends React.Component {
                     <p>latitude: {this.state.locationResult.lat}</p>
                     <p>longitude: {this.state.locationResult.lon} </p>
 
-                    {this.state.WeatherResult.map((ele) => {
-                      return (
-                        <>
-                          <p>date: {ele.date}</p>
-                          <p>
-                            description: {ele.description}</p>
-                        </>
-                      );
-                    })}
+                    <hr/>
+
+                    <Weather WeatherResult={this.state.WeatherResult} />
+
+                    <hr/>
+
+                    <Movie MovieResult={this.state.MovieResult}/>
                   </Card.Text>
                   <Card.Img
                     variant="top"
