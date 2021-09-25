@@ -7,13 +7,13 @@ class Movie extends React.Component {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th style={{ textAlign: "center" }}>Movietitle</th>
-            <th style={{ textAlign: "center" }}>overview</th>
-            <th style={{ textAlign: "center" }}>averageVotes</th>
-            <th style={{ textAlign: "center" }}>totalVotes</th>
-            <th style={{ textAlign: "center" }}>imageUrl</th>
-            <th style={{ textAlign: "center" }}>popularity</th>
-            <th style={{ textAlign: "center" }}>releasedOn</th>
+            <th>Movietitle</th>
+            <th>overview</th>
+            <th>averageVotes</th>
+            <th>totalVotes</th>
+            <th>imageUrl</th>
+            <th>popularity</th>
+            <th>releasedOn</th>
           </tr>
         </thead>
         <tbody>

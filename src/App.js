@@ -25,7 +25,7 @@ class App extends React.Component {
     await this.setState({
       searchQuery: e.target.city.value,
     });
-console.log('1');
+    console.log(this.state.searchQuery);
     let reqUrl = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.searchQuery}&format=json`;
 
     let locResult = await axios.get(reqUrl);
@@ -102,13 +102,13 @@ console.log('1');
                     <p>latitude: {this.state.locationResult.lat}</p>
                     <p>longitude: {this.state.locationResult.lon} </p>
 
-                    <hr/>
+                    <hr />
 
                     <Weather WeatherResult={this.state.WeatherResult} />
 
-                    <hr/>
+                    <hr />
 
-                    <Movie MovieResult={this.state.MovieResult}/>
+                    <Movie MovieResult={this.state.MovieResult} />
                   </Card.Text>
                   <Card.Img
                     variant="top"
