@@ -89,7 +89,7 @@ console.log('1');
             <>
               <Card
                 style={{
-                  width: "50rem",
+                  width: "70rem",
                   border: "2px solid red",
                   marginLeft: "25px",
                   marginTop: "25px",

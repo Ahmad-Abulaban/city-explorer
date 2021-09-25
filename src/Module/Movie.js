@@ -7,27 +7,26 @@ class Movie extends React.Component {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th style={{ textAlign: "center" }}>Movies</th>
+            <th style={{ textAlign: "center" }}>Movietitle</th>
+            <th style={{ textAlign: "center" }}>overview</th>
+            <th style={{ textAlign: "center" }}>averageVotes</th>
+            <th style={{ textAlign: "center" }}>totalVotes</th>
+            <th style={{ textAlign: "center" }}>imageUrl</th>
+            <th style={{ textAlign: "center" }}>popularity</th>
+            <th style={{ textAlign: "center" }}>releasedOn</th>
           </tr>
         </thead>
         <tbody>
           {this.props.MovieResult.map((ele) => {
             return (
-              <tr style={{ textAlign: "center"}}>
-                <br />
-                <tr>{ele.title}</tr>
-                <br />
-                <tr>{ele.overview}</tr>
-                <br />
-                <tr>{ele.averageVotes}</tr>
-                <br />
-                <tr>{ele.totalVotes}</tr>  
-                <img style={{ width: "15rem" }} src={ele.imageUrl} />
-                <tr>{ele.popularity}</tr>
-                <br />
-                <tr>{ele.releasedOn}</tr>
-                <br />
-                <br />
+              <tr>
+                <td>{ele.title}</td>
+                <td>{ele.overview}</td>
+                <td>{ele.averageVotes}</td>
+                <td>{ele.totalVotes}</td>  
+                <td><img style={{ width: "15rem" }} src={ele.imageUrl} alt='img' /></td>
+                <td>{ele.popularity}</td>
+                <td>{ele.releasedOn}</td>
               </tr>
             );
           })}
